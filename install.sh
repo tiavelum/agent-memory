@@ -33,7 +33,7 @@ if [ -f .agent-memory.conf ]; then
   echo ".agent-memory.conf exists — left untouched"
 else
   cat > .agent-memory.conf <<'EOF'
-# Budgets for check.sh. Shell syntax; sourced, so keep it simple.
+# Budgets for check-memory.sh. Shell syntax; sourced, so keep it simple.
 
 CONVENTION_MAX_LINES=60      # the rule must stay readable in full
 DOC_MAX_LINES=1500           # any single knowledge document
@@ -45,7 +45,7 @@ EOF
   echo "wrote .agent-memory.conf"
 fi
 
-cp "$SRC/check.sh" ./check-memory.sh
+cp "$SRC/check-memory.sh" ./check-memory.sh
 chmod +x ./check-memory.sh
 echo "wrote check-memory.sh"
 

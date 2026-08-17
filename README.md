@@ -42,7 +42,7 @@ since the last journal entry without anyone writing it down.
 
 ```bash
 git clone git@github.com:tiavelum/agent-memory.git
-cd agent-memory && chmod +x install.sh check.sh
+cd agent-memory && chmod +x install.sh check-memory.sh
 ./install.sh /path/to/your-repo
 ```
 
@@ -73,7 +73,7 @@ credentials.
 
 ## Adapting it
 
-Change `CONVENTION.md` and `check.sh` together, or not at all. A rule that
+Change `CONVENTION.md` and `check-memory.sh` together, or not at all. A rule that
 nothing checks is decoration, and a check that enforces a rule nobody wrote
 down is a trap. That pairing is the whole idea; everything else here is
 plumbing.

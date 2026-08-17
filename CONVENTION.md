@@ -4,7 +4,7 @@
 README, not a project instruction field, not another document. A second copy
 drifts, and the drift is invisible until it has already cost something.
 
-Everything below is either checked by `check.sh` or dropped. A rule that
+Everything below is either checked by `check-memory.sh` or dropped. A rule that
 cannot be checked is not adopted.
 
 ## What a session does
@@ -33,7 +33,7 @@ the mechanism depends only on the repository's own contents.
 
 ## Budgets
 
-Checked by `check.sh`, configured in `.agent-memory.conf`:
+Checked by `check-memory.sh`, configured in `.agent-memory.conf`:
 
 - this file: at most 60 lines
 - any single knowledge document: at most the configured line budget
@@ -42,6 +42,6 @@ Checked by `check.sh`, configured in `.agent-memory.conf`:
 
 ## When the rule and the behaviour disagree
 
-The rule loses. Change this file, or change `check.sh` so the new behaviour
+The rule loses. Change this file, or change `check-memory.sh` so the new behaviour
 is what is verified. Do not leave a rule in place that nothing enforces —
 that is how a convention becomes decoration.
