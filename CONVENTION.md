@@ -40,6 +40,12 @@ Checked by `check-memory.sh`, configured in `.agent-memory.conf`:
 - every day with commits to watched paths has a journal entry, and every
   journal entry has commits
 
+## Rules of this project
+
+A project adds its own under a `## Project rules` heading here, each checked
+by a `check-memory-local.sh` beside this file. Same standard: a rule nothing
+checks does not belong.
+
 ## When the rule and the behaviour disagree
 
 The rule loses. Change this file, or change `check-memory.sh` so the new behaviour

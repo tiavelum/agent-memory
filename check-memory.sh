@@ -100,6 +100,14 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
   [ "$dirty" -gt 0 ] && note "----" "$dirty uncommitted change(s) in the working tree"
 fi
 
+# --- 6. the project's own rule, if it has one ---------------------------
+# The generic check knows nothing about a particular project. A repository
+# that needs a rule of its own puts it here, so there is still one command
+# to run and one exit code to read.
+if [ -x ./check-memory-local.sh ]; then
+  ./check-memory-local.sh || fail=1
+fi
+
 echo
 if [ "$fail" -ne 0 ]; then
   echo "==> FAILED"

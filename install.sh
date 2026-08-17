@@ -7,20 +7,28 @@
 # config with the budgets, and prints the short loader text to paste into
 # the assistant's project instructions.
 #
-# Idempotent: an existing CONVENTION.md is replaced (it is meant to be the
-# upstream copy), an existing JOURNAL.md is never touched.
+# Idempotent, and it never overwrites what a project has added: an existing
+# CONVENTION.md and JOURNAL.md are left alone. A project's own rules live in
+# its CONVENTION.md, so replacing that file silently deletes them.
+# Use --force to take the upstream copy anyway.
 
 set -eu
 
 SRC="$(cd "$(dirname "$0")" && pwd)"
-TARGET="${1:?usage: ./install.sh /path/to/target-repo}"
+FORCE=0
+if [ "${1:-}" = "--force" ]; then FORCE=1; shift; fi
+TARGET="${1:?usage: ./install.sh [--force] /path/to/target-repo}"
 
 [ -d "$TARGET" ] || { echo "no such directory: $TARGET" >&2; exit 2; }
 cd "$TARGET"
 git rev-parse --git-dir >/dev/null 2>&1 || echo "warning: $TARGET is not a git repo — the coverage check will be skipped" >&2
 
-cp "$SRC/CONVENTION.md" ./CONVENTION.md
-echo "wrote CONVENTION.md"
+if [ -f CONVENTION.md ] && [ "$FORCE" -eq 0 ]; then
+  echo "CONVENTION.md exists — left untouched (--force to replace)"
+else
+  cp "$SRC/CONVENTION.md" ./CONVENTION.md
+  echo "wrote CONVENTION.md"
+fi
 
 if [ -f JOURNAL.md ]; then
   echo "JOURNAL.md exists — left untouched"
